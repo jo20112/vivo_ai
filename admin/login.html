@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login - VIVO AI</title>
+    <style>
+        .admin-login {
+            background: var(--dark-color);
+        }
+        .admin-card {
+            border: 1px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body class="admin-login">
+    <div class="auth-card admin-card">
+        <h2><i class="icon shield"></i> لوحة تحكم المشرفين</h2>
+        <form id="adminLoginForm">
+            <input type="email" placeholder="بريد المسؤول" required>
+            <input type="password" placeholder="كلمة المرور" required>
+            <div class="2fa-section">
+                <input type="text" placeholder="رمز التحقق (2FA)" id="2faCode">
+                <button type="button" id="send2FA">إرسال الرمز</button>
+            </div>
+            <button type="submit">دخول المسؤول</button>
+        </form>
+    </div>
+
+    <script>
+        // تحقق من صلاحيات المسؤول قبل التسجيل
+        async function handleAdminLogin(email, password, code) {
+            const { data: { user }, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            
+            if (error) {
+                showError('بيانات الدخول غير صحيحة');
+                return;
+            }
+            
+            // تحقق من دور المستخدم
+            const { data: profile } = await supabase
+                .from('profiles')
+                .select('role')
+                .eq('user_id', user.id)
+                .single();
+                
+            if (profile?.role !== 'admin') {
+                await supabase.auth.signOut();
+                showError('ليس لديك صلاحيات المسؤول');
+                return;
+            }
+            
+            // التحقق بخطوتين
+            const { data: twoFactorData, error: twoFactorError } = await supabase
+                .from('admin_2fa')
+                .select('*')
+                .eq('user_id', user.id)
+                .eq('code', code)
+                .single();
+                
+            if (twoFactorError || !twoFactorData) {
+                showError('رمز التحقق غير صحيح');
+                return;
+            }
+            
+            window.location.href = "/admin/dashboard.html";
+        }
+    </script>
+</body>
+</html>

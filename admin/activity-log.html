@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سجل النشاط - VIVO AI</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="admin-logo">
+        <img src="../assets/img/logo.png" alt="VIVO AI">
+        <h2>لوحة التحكم</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">الرئيسية</a>
+        <a href="users.html">المستخدمين</a>
+        <a href="activity-log.html" class="active">سجل النشاط</a>
+        <a href="../auth/login.html">تسجيل الخروج</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <h1>سجل النشاط</h1>
+      
+      <div class="filters">
+        <select id="filterType">
+          <option value="all">كل الأنشطة</option>
+          <option value="login">تسجيلات الدخول</option>
+          <option value="chat">المحادثات</option>
+          <option value="profile">تعديل الملفات</option>
+        </select>
+        <input type="date" id="filterDate">
+        <button id="applyFilters" class="btn">تطبيق</button>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>المستخدم</th>
+              <th>نوع النشاط</th>
+              <th>التاريخ</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="activityTable">
+            <!-- سيتم ملؤه بالجافاسكريبت -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  
+  <!-- مودال التفاصيل -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>تفاصيل النشاط</h3>
+      <div class="modal-body">
+        <p><strong>النوع:</strong> <span id="modalActivityType"></span></p>
+        <p><strong>المستخدم:</strong> <span id="modalUser"></span></p>
+        <p><strong>التاريخ:</strong> <span id="modalDate"></span></p>
+        <p><strong>عنوان IP:</strong> <span id="modalIp"></span></p>
+        <pre id="modalDetails"></pre>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="../assets/js/admin/activity-log.js"></script>
+</body>
+</html>

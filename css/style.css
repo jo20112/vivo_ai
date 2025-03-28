@@ -1,0 +1,103 @@
+/* أنماط الواجهة العامة */
+:root {
+  --primary: #6E48AA;
+  --secondary: #2DCC70;
+  --dark: #2C3E50;
+  --light: #ECF0F1;
+  --danger: #E74C3C;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f7fa;
+  direction: rtl;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.chat-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-top: 20px;
+  height: 500px;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 18px;
+  max-width: 70%;
+}
+
+.user-message {
+  background: #e3f2fd;
+  margin-left: auto;
+}
+
+.ai-message {
+  background: #e8f5e9;
+  margin-right: auto;
+}
+
+.input-area {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* التصميم للجوال */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .chat-container {
+    height: 400px;
+  }
+  
+  .message {
+    max-width: 85%;
+  }
+}

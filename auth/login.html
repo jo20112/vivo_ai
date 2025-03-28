@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>تسجيل الدخول - VIVO AI</title>
+    <style>
+        .auth-container {
+            background: url('assets/img/auth-bg.jpg') no-repeat;
+            background-size: cover;
+        }
+        .auth-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        .google-btn {
+            background: #4285F4;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <img src="assets/img/logo.png" alt="VIVO AI">
+            <h2>مرحبًا بعودتك!</h2>
+            
+            <form id="loginForm">
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة المرور" required>
+                <button type="submit">تسجيل الدخول</button>
+                
+                <div class="auth-divider">أو</div>
+                
+                <button type="button" class="google-btn">
+                    <img src="assets/img/google-icon.png" alt="Google">
+                    تسجيل الدخول بجوجل
+                </button>
+                
+                <div class="auth-links">
+                    <a href="reset-password.html">نسيت كلمة المرور؟</a>
+                    <a href="signup.html">إنشاء حساب جديد</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // تسجيل الدخول بالإيميل
+        async function handleLogin(email, password) {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            
+            if (error) {
+                showError(error.message);
+            } else {
+                window.location.href = "/user/profile.html";
+            }
+        }
+        
+        // تسجيل الدخول بجوجل
+        async function handleGoogleLogin() {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: 'https://yourdomain.com/auth/callback.html'
+                }
+            });
+        }
+    </script>
+</body>
+</html>

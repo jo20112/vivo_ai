@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم VIVO AI</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="admin-logo">
+                <img src="assets/img/logo.png" alt="VIVO AI Admin">
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#"><i class="icon dashboard"></i> لوحة التحكم</a></li>
+                    <li><a href="#"><i class="icon conversations"></i> المحادثات</a></li>
+                    <li><a href="#"><i class="icon analytics"></i> التحليلات</a></li>
+                    <li><a href="#"><i class="icon settings"></i> الإعدادات</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>المحادثات اليوم</h3>
+                    <p class="stat-value" id="todayChats">0</p>
+                </div>
+                <!-- المزيد من البطاقات الإحصائية -->
+            </div>
+
+            <div class="conversation-list">
+                <div class="list-header">
+                    <h2>آخر المحادثات</h2>
+                    <div class="search-box">
+                        <input type="text" placeholder="ابحث في المحادثات...">
+                        <button class="search-btn">بحث</button>
+                    </div>
+                </div>
+                <div id="conversationsContainer" class="conversations-container">
+                    <!-- سيتم ملؤها بالجافاسكريبت -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>
